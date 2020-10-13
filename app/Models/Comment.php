@@ -15,4 +15,27 @@ class Comment extends Model {
     public function author() {
         return $this->hasOne(User::class);
     }
+
+    public function allow() {
+        $this->status = 1;
+        $this->save();
+    }
+
+    public function disAllow() {
+        $this->status = 0;
+        $this->save();
+    }
+
+    public function toogleStatus() {
+        if ($this->status = 0) {
+            return $this->allow();
+        }
+
+        return $this->disAllow();
+    }
+
+    public function remove() {
+        $this->remove();
+    }
+
 }
