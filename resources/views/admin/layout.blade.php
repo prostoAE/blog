@@ -8,6 +8,18 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" href="/css/admin.css">
+    <style>
+        table.table form {
+            display: inline-block;
+        }
+
+        button.delete {
+            background: transparent;
+            border: none;
+            color: #337ab7;
+            padding: 0;
+        }
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -229,8 +241,8 @@
 
     <!-- =============================================== -->
     <!-- Content Wrapper. Contains page content -->
-    @yield('content')
-    <!-- /.content-wrapper -->
+@yield('content')
+<!-- /.content-wrapper -->
 
 
     <footer class="main-footer">

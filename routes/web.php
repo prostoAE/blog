@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', [DashboardController::class, 'index']);
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::resource('/categories', CategoriesController::class);
+});
