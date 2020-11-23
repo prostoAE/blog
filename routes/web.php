@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TagsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
 
@@ -22,4 +23,5 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::resource('/categories', CategoriesController::class);
+    Route::resource('/tags', TagsController::class);
 });

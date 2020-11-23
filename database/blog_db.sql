@@ -1,0 +1,16 @@
+INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (2, 'Путешествия', 'puteshestviya', '2020-11-20 12:35:12', '2020-11-23 10:09:34');
+INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (5, 'Игры', 'igry', '2020-11-23 10:26:19', '2020-11-23 10:26:19');
+INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (6, 'Изучение', 'izuchenie', '2020-11-23 10:39:49', '2020-11-23 10:39:49');
+INSERT INTO blog.migrations (id, migration, batch) VALUES (19, '2014_10_12_000000_create_users_table', 1);
+INSERT INTO blog.migrations (id, migration, batch) VALUES (20, '2014_10_12_100000_create_password_resets_table', 1);
+INSERT INTO blog.migrations (id, migration, batch) VALUES (21, '2019_08_19_000000_create_failed_jobs_table', 1);
+INSERT INTO blog.migrations (id, migration, batch) VALUES (22, '2020_10_10_064130_create_categories_table', 1);
+INSERT INTO blog.migrations (id, migration, batch) VALUES (23, '2020_10_10_064939_create_tags_table', 1);
+INSERT INTO blog.migrations (id, migration, batch) VALUES (24, '2020_10_10_113949_create_comments_table', 1);
+INSERT INTO blog.migrations (id, migration, batch) VALUES (25, '2020_10_10_114023_create_posts_table', 1);
+INSERT INTO blog.migrations (id, migration, batch) VALUES (26, '2020_10_10_114106_create_subscriptions_table', 1);
+INSERT INTO blog.migrations (id, migration, batch) VALUES (27, '2020_10_12_072511_create_posts_tags_table', 1);
+INSERT INTO blog.tags (id, title, slug, created_at, updated_at) VALUES (1, 'First', 'first', '2020-11-23 11:36:51', '2020-11-23 11:36:51');
+INSERT INTO blog.tags (id, title, slug, created_at, updated_at) VALUES (2, 'test2', 'test', '2020-11-23 11:39:23', '2020-11-23 11:49:05');
+INSERT INTO blog.tags (id, title, slug, created_at, updated_at) VALUES (5, 'second', 'second', '2020-11-23 11:41:19', '2020-11-23 11:41:19');
+INSERT INTO blog.tags (id, title, slug, created_at, updated_at) VALUES (6, '223', '22', '2020-11-23 11:50:36', '2020-11-23 11:50:42');
