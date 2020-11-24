@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable {
     use HasFactory, Notifiable;
@@ -22,7 +23,7 @@ class User extends Authenticatable {
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -76,18 +77,22 @@ class User extends Authenticatable {
             return;
         }
 
-        Storage::delete('uploads/' . $this->image);
-        $filename = str_random(10) . '.' . $image->extension();
-        $image->saveAs('uploads', $filename);
-        $this->image = $filename;
+        if ($this->avatar != null) {
+            Storage::delete('uploads/' . $this->avatar);
+        }
+
+        $filename = Str::random(10) . '.' . $image->extension();
+//        dd(get_class_methods($image));
+        $image->storeAs('uploads', $filename);
+        $this->avatar = $filename;
         $this->save();
     }
 
     public function getAvatar() {
-        if ($this->image == null) {
-            return '/img/no-user-image.png';
+        if ($this->avatar == null) {
+            return '/img/no-image.png';
         }
-        return '/uploads' . $this->image;
+        return '/uploads/' . $this->avatar;
     }
 
     public function makeAdmin() {
