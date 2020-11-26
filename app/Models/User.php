@@ -22,8 +22,7 @@ class User extends Authenticatable {
      */
     protected $fillable = [
         'name',
-        'email',
-        'password'
+        'email'
     ];
 
     /**
@@ -46,46 +45,56 @@ class User extends Authenticatable {
     ];
 
     public function posts() {
-        return $this->hasMany(Post::class);
+        return $this->hasMany( Post::class );
     }
 
     public function comments() {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany( Comment::class );
     }
 
-    public static function add($fields) {
+    public static function add( $fields ) {
         $user = new static;
-        $user->fill($fields);
-        $user->password = bcrypt($fields['password']);
+        $user->fill( $fields );
         $user->save();
 
         return $user;
     }
 
-    public function edit($fields) {
-        $this->fill($fields);
-        $this->password = bcrypt($fields['password']);
+    public function edit( $fields ) {
+        $this->fill( $fields );
         $this->save();
     }
 
+    public function generatePassword( $password ) {
+        if ($password!= null) {
+            $this->password = bcrypt($password);
+            $this->save();
+        }
+    }
+
     public function remove() {
+        $this->removeAvatar();
         $this->delete();
     }
 
-    public function uploadAvatar($image) {
+    public function uploadAvatar( $image ) {
         if ($image == null) {
             return;
         }
 
-        if ($this->avatar != null) {
-            Storage::delete('uploads/' . $this->avatar);
-        }
+        $this->removeAvatar();
 
-        $filename = Str::random(10) . '.' . $image->extension();
-//        dd(get_class_methods($image));
-        $image->storeAs('uploads', $filename);
+        $filename = Str::random( 10 ) . '.' . $image->extension();
+        //        dd(get_class_methods($image));
+        $image->storeAs( 'uploads', $filename );
         $this->avatar = $filename;
         $this->save();
+    }
+
+    public function removeAvatar() {
+        if ($this->avatar != null) {
+            Storage::delete( 'uploads/' . $this->avatar );
+        }
     }
 
     public function getAvatar() {
@@ -105,7 +114,7 @@ class User extends Authenticatable {
         $this->save();
     }
 
-    public function toogleAdmin($value) {
+    public function toogleAdmin( $value ) {
         if ($value == null) {
             return $this->makeNormal();
         }
@@ -123,7 +132,7 @@ class User extends Authenticatable {
         $this->save();
     }
 
-    public function toogleBan($value) {
+    public function toogleBan( $value ) {
         if ($value == null) {
             return $this->unban();
         }
