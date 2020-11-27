@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Post extends Model {
 
@@ -17,19 +19,20 @@ class Post extends Model {
 
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'date'
     ];
 
     public function category() {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo( Category::class );
     }
 
     public function author() {
-        return $this->hasOne(User::class);
+        return $this->belongsTo( User::class, 'user_id' );
     }
 
     public function tags() {
-        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
+        return $this->belongsToMany( Tag::class, 'posts_tags', 'post_id', 'tag_id' );
     }
 
     /**
@@ -45,33 +48,39 @@ class Post extends Model {
         ];
     }
 
-    public static function add($fields) {
+    public static function add( $fields ) {
         $post = new static;
-        $post->fill($fields);
+        $post->fill( $fields );
         $post->user_id = 1;
         $post->save();
 
         return $post;
     }
 
-    public function edit($fields) {
-        $this->fill($fields);
+    public function edit( $fields ) {
+        $this->fill( $fields );
         $this->save();
     }
 
     public function remove() {
-        Storage::delete('uploads/' . $this->image);
+        $this->removeImage();
         $this->delete();
     }
 
-    public function uploadImage($image) {
+    public function removeImage() {
+        if ($this->image != null) {
+            Storage::delete( 'uploads/' . $this->image );
+        }
+    }
+
+    public function uploadImage( $image ) {
         if ($image == null) {
             return;
         }
 
-        Storage::delete('uploads/' . $this->image);
-        $filename = str_random(10) . '.' . $image->extension();
-        $image->saveAs('uploads', $filename);
+        $this->removeImage();
+        $filename = Str::random( 10 ) . '.' . $image->extension();
+        $image->storeAs( 'uploads', $filename );
         $this->image = $filename;
         $this->save();
     }
@@ -80,10 +89,10 @@ class Post extends Model {
         if ($this->image == null) {
             return '/img/no-image.png';
         }
-        return '/uploads' . $this->image;
+        return '/uploads/' . $this->image;
     }
 
-    public function setCategory($id) {
+    public function setCategory( $id ) {
         if ($id == null) {
             return;
         }
@@ -92,12 +101,12 @@ class Post extends Model {
         $this->save();
     }
 
-    public function setTags($ids) {
+    public function setTags( $ids ) {
         if ($ids == null) {
             return;
         }
 
-        $this->tags()->sync($ids);
+        $this->tags()->sync( $ids );
     }
 
     public function setDraft() {
@@ -110,7 +119,7 @@ class Post extends Model {
         $this->save();
     }
 
-    public function toogleStatus($value) {
+    public function toogleStatus( $value ) {
         if ($value == null) {
             return $this->setDraft();
         }
@@ -127,10 +136,27 @@ class Post extends Model {
         $this->save();
     }
 
-    public function toogleFeatured($value) {
+    public function toogleFeatured( $value ) {
         if ($value == null) {
             return $this->setStandart();
         }
         return $this->setFeatured();
+    }
+
+    public function setDateAttribute( $value ) {
+        $date = Carbon::createFromFormat( 'd/m/y', $value )->format( 'Y-m-d' );
+        $this->attributes['date'] = $date;
+    }
+
+    public function getCategoryTitle(  ) {
+        return ($this->category != null) ? $this->category->title : 'Нет категории';
+    }
+
+    public function getTagsTitles(  ) {
+        if ($this->tags->isNotEmpty()) {
+            return implode(',', $this->tags->pluck('title')->all());
+        }
+
+        return 'Нет тегов';
     }
 }
