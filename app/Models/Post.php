@@ -148,6 +148,11 @@ class Post extends Model {
         $this->attributes['date'] = $date;
     }
 
+    public function getDateAttribute( $value ) {
+        $date = Carbon::createFromFormat( 'Y-m-d', $value )->format( 'd/m/y' );
+        return $date;
+    }
+
     public function getCategoryTitle(  ) {
         return ($this->category != null) ? $this->category->title : 'Нет категории';
     }
