@@ -20,7 +20,8 @@ class Post extends Model {
     protected $fillable = [
         'title',
         'content',
-        'date'
+        'date',
+        'description'
     ];
 
     public function category() {
@@ -163,5 +164,13 @@ class Post extends Model {
         }
 
         return 'Нет тегов';
+    }
+
+    public function getCategoryId() {
+        return $this->category != null ? $this->category->id : null;
+    }
+
+    public function getDate() {
+        return Carbon::createFromFormat('d/m/y', $this->date)->format('F d, Y');
     }
 }

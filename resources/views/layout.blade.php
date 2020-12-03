@@ -10,7 +10,7 @@
     <title>Blog</title>
 
     <!-- common css -->
-    <link rel="stylesheet" href="/css/front.css">
+    <link rel="stylesheet" href="{{mix('/css/front.css')}}">
 
     <!-- HTML5 shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -235,7 +235,8 @@
         </div>
     </div>
 </footer>
+
 <!-- js files -->
-<script src="/js/front.js"></script>
+<script src="{{mix('/js/front.js')}}"></script>
 </body>
 </html>
