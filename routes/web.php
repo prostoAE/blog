@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\CategoriesController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/post/{slug}', [HomeController::class, 'show'])->name('post.show');
+Route::get('/tag/{slug}', [HomeController::class, 'tag'])->name('tag.show');
+Route::get('/category/{slug}', [HomeController::class, 'category'])->name('category.show');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index']);
