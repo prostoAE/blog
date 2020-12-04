@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\CategoriesController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/post/{slug}', [HomeController::class, 'show'])->name('post.show');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index']);
