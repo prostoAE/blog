@@ -199,4 +199,8 @@ class Post extends Model {
   public function hasCategory(  ) {
     return $this->category != null ? true : false;
   }
+
+  public static function getPopularPosts() {
+    return self::orderBy( 'views', 'desc' )->take( 3 )->get();
+  }
 }
