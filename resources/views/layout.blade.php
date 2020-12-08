@@ -40,7 +40,6 @@
         <a class="navbar-brand" href="/"><img src="/images/logo.png" alt=""></a>
       </div>
 
-
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav text-uppercase">
@@ -51,17 +50,16 @@
 
         <ul class="nav navbar-nav text-uppercase pull-right">
           @if(Auth::check())
-                <li><a href="/profile">My profile</a></li>
-                <li><a href="/logout">Logout</a></li>
+            <li><a href="/profile">My profile</a></li>
+            <li><a href="/logout">Logout</a></li>
           @else
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
           @endif
         </ul>
 
       </div>
       <!-- /.navbar-collapse -->
-
 
       <div class="show-search">
         <form role="search" method="get" id="searchform" action="#">

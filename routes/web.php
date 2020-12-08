@@ -24,13 +24,19 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/post/{slug}', [HomeController::class, 'show'])->name('post.show');
 Route::get('/tag/{slug}', [HomeController::class, 'tag'])->name('tag.show');
 Route::get('/category/{slug}', [HomeController::class, 'category'])->name('category.show');
-Route::get('/register', [AuthController::class, 'registerForm']);
-Route::post('/register', [AuthController::class, 'register']);
-Route::get('/login', [AuthController::class, 'loginForm']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout']);
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/logout', [AuthController::class, 'logout']);
+});
+
+Route::group(['middleware' => 'guest'], function () {
+  Route::get('/register', [AuthController::class, 'registerForm']);
+  Route::post('/register', [AuthController::class, 'register']);
+  Route::get('/login', [AuthController::class, 'loginForm']);
+  Route::post('/login', [AuthController::class, 'login']);
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::resource('/categories', CategoriesController::class);
     Route::resource('/tags', TagsController::class);
