@@ -9,11 +9,11 @@ class Comment extends Model {
     use HasFactory;
 
     public function post() {
-        return $this->hasOne(Post::class);
+        return $this->belongsTo(Post::class);
     }
 
     public function author() {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function allow() {
@@ -27,7 +27,7 @@ class Comment extends Model {
     }
 
     public function toogleStatus() {
-        if ($this->status = 0) {
+        if ($this->status == 0) {
             return $this->allow();
         }
 
@@ -35,7 +35,7 @@ class Comment extends Model {
     }
 
     public function remove() {
-        $this->remove();
+        $this->delete();
     }
 
 }

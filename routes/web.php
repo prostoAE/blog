@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\TagsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/profile', [ProfileController::class, 'index']);
   Route::post('/profile', [ProfileController::class, 'store']);
   Route::get('/logout', [AuthController::class, 'logout']);
+  Route::post('/comment', [CommentsController::class, 'store']);
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -46,4 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::resource('/tags', TagsController::class);
     Route::resource('/users', UsersController::class);
     Route::resource('/posts', PostsController::class);
+    Route::get('/comments', [\App\Http\Controllers\Admin\CommentsController::class, 'index'])->name('admin.comments');
+    Route::get('/comments/toogle/{id}', [\App\Http\Controllers\Admin\CommentsController::class, 'toogle']);
+    Route::delete('/comments/{id}/destroy', [\App\Http\Controllers\Admin\CommentsController::class, 'destroy'])->name('comments.destroy');
 });

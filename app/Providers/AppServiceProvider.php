@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -29,6 +30,10 @@ class AppServiceProvider extends ServiceProvider {
       $view->with('featuredPosts', Post::where( 'is_featured', 1 )->take( 3 )->get());
       $view->with('recentPosts', Post::orderBy( 'date', 'desc' )->take( 4 )->get());
       $view->with('categories', Category::all());
+    });
+
+    View::composer('admin._sidebar', function ($view) {
+      $view->with('newCommentsCount', Comment::where('status', 0)->count());
     });
 
     Paginator::useBootstrap();

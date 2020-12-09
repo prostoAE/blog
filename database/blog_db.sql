@@ -3,6 +3,7 @@ INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (27
 INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (28, 'magnam', 'magnam', '2020-12-03 13:12:03', '2020-12-03 13:12:03');
 INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (29, 'fugiat', 'fugiat', '2020-12-03 13:12:03', '2020-12-03 13:12:03');
 INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (30, 'laborum', 'laborum', '2020-12-03 13:12:03', '2020-12-03 13:12:03');
+INSERT INTO blog.comments (id, text, user_id, post_id, status, created_at, updated_at) VALUES (2, 'Hello!', 8, 20, 0, '2020-12-09 12:20:39', '2020-12-09 13:09:11');
 INSERT INTO blog.migrations (id, migration, batch) VALUES (1, '2014_10_12_000000_create_users_table', 1);
 INSERT INTO blog.migrations (id, migration, batch) VALUES (2, '2014_10_12_100000_create_password_resets_table', 1);
 INSERT INTO blog.migrations (id, migration, batch) VALUES (3, '2019_08_19_000000_create_failed_jobs_table', 1);

@@ -36,6 +36,10 @@ class Post extends Model {
     return $this->belongsToMany( Tag::class, 'posts_tags', 'post_id', 'tag_id' );
   }
 
+  public function comments() {
+    return $this->hasMany(Comment::class);
+  }
+
   /**
    * Return the sluggable configuration array for this model.
    *
@@ -202,5 +206,9 @@ class Post extends Model {
 
   public static function getPopularPosts() {
     return self::orderBy( 'views', 'desc' )->take( 3 )->get();
+  }
+
+  public function getComments() {
+      return $this->comments()->where('status', 1)->get();
   }
 }
