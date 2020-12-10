@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -37,7 +38,7 @@ class Post extends Model {
   }
 
   public function comments() {
-    return $this->hasMany(Comment::class);
+    return $this->hasMany( Comment::class );
   }
 
   /**
@@ -56,7 +57,7 @@ class Post extends Model {
   public static function add( $fields ) {
     $post = new static;
     $post->fill( $fields );
-    $post->user_id = 1;
+    $post->user_id = Auth::user()->id;
     $post->save();
 
     return $post;
@@ -94,6 +95,7 @@ class Post extends Model {
     if ($this->image == null) {
       return '/img/no-image.png';
     }
+
     return '/uploads/' . $this->image;
   }
 
@@ -200,7 +202,7 @@ class Post extends Model {
     return self::all()->except( $this->id );
   }
 
-  public function hasCategory(  ) {
+  public function hasCategory() {
     return $this->category != null ? true : false;
   }
 
@@ -209,6 +211,6 @@ class Post extends Model {
   }
 
   public function getComments() {
-      return $this->comments()->where('status', 1)->get();
+    return $this->comments()->where( 'status', 1 )->get();
   }
 }

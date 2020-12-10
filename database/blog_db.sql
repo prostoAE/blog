@@ -3,7 +3,7 @@ INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (27
 INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (28, 'magnam', 'magnam', '2020-12-03 13:12:03', '2020-12-03 13:12:03');
 INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (29, 'fugiat', 'fugiat', '2020-12-03 13:12:03', '2020-12-03 13:12:03');
 INSERT INTO blog.categories (id, title, slug, created_at, updated_at) VALUES (30, 'laborum', 'laborum', '2020-12-03 13:12:03', '2020-12-03 13:12:03');
-INSERT INTO blog.comments (id, text, user_id, post_id, status, created_at, updated_at) VALUES (2, 'Hello!', 8, 20, 0, '2020-12-09 12:20:39', '2020-12-09 13:09:11');
+INSERT INTO blog.comments (id, text, user_id, post_id, status, created_at, updated_at) VALUES (2, 'Hello!', 8, 20, 0, '2020-12-09 12:20:39', '2020-12-10 10:08:56');
 INSERT INTO blog.migrations (id, migration, batch) VALUES (1, '2014_10_12_000000_create_users_table', 1);
 INSERT INTO blog.migrations (id, migration, batch) VALUES (2, '2014_10_12_100000_create_password_resets_table', 1);
 INSERT INTO blog.migrations (id, migration, batch) VALUES (3, '2019_08_19_000000_create_failed_jobs_table', 1);
@@ -29,11 +29,12 @@ INSERT INTO blog.migrations (id, migration, batch) VALUES (30, '2020_11_27_13201
 INSERT INTO blog.migrations (id, migration, batch) VALUES (31, '2020_11_27_135504_add_image_to_posts', 5);
 INSERT INTO blog.migrations (id, migration, batch) VALUES (32, '2020_12_03_132633_add_description_to_posts', 6);
 INSERT INTO blog.migrations (id, migration, batch) VALUES (33, '2020_12_08_115434_add_description_to_users', 7);
-INSERT INTO blog.posts (id, title, slug, content, category_id, user_id, status, views, is_featured, created_at, updated_at, date, image, description) VALUES (20, 'Voluptas sint commodi fugiat qui molestiae qui.', 'voluptas-sint-commodi-fugiat-qui-molestiae-qui', '<p>Neque enim laudantium nisi soluta tempora consequatur consequatur.</p>', null, 8, 1, 1813, 1, '2020-12-03 13:12:03', '2020-12-03 15:25:34', '2017-09-09', '', '<p><strong>ghjhjk,jk.</strong></p>');
+INSERT INTO blog.posts (id, title, slug, content, category_id, user_id, status, views, is_featured, created_at, updated_at, date, image, description) VALUES (20, 'Voluptas sint commodi fugiat qui molestiae qui.', 'voluptas-sint-commodi-fugiat-qui-molestiae-qui', '<p>Neque enim laudantium nisi soluta tempora consequatur consequatur.</p>', null, 8, 0, 1813, 1, '2020-12-03 13:12:03', '2020-12-03 15:25:34', '2017-09-09', '', '<p><strong>ghjhjk,jk.</strong></p>');
 INSERT INTO blog.posts (id, title, slug, content, category_id, user_id, status, views, is_featured, created_at, updated_at, date, image, description) VALUES (21, 'Vel aut hic et deleniti quia est.', 'vel-aut-hic-et-deleniti-quia-est', '<p>Voluptatem praesentium maxime ut rerum.</p>', 1, 17, 1, 3062, 1, '2020-12-03 13:12:03', '2020-12-04 09:37:42', '2017-09-08', 'O0iYOfdVTd.jpeg', '<p><strong>desc</strong></p>');
 INSERT INTO blog.posts (id, title, slug, content, category_id, user_id, status, views, is_featured, created_at, updated_at, date, image, description) VALUES (22, 'Sunt laborum quia eligendi maxime.', 'sunt-laborum-quia-eligendi-maxime', '<p>Qui quaerat assumenda veniam saepe commodi et.</p>', 1, 8, 1, 3882, 1, '2020-12-03 13:12:03', '2020-12-07 10:20:50', '2017-09-04', 'gKHucyjFie.png', null);
 INSERT INTO blog.posts (id, title, slug, content, category_id, user_id, status, views, is_featured, created_at, updated_at, date, image, description) VALUES (23, 'Ipsam nostrum dolores facilis quos cupiditate voluptates rerum.', 'ipsam-nostrum-dolores-facilis-quos-cupiditate-voluptates-rerum', 'Deleniti sint pariatur eveniet ullam sunt inventore accusantium.', 1, 16, 1, 3632, 0, '2020-12-03 13:12:03', '2020-12-03 13:12:03', '2017-09-25', '', null);
-INSERT INTO blog.posts (id, title, slug, content, category_id, user_id, status, views, is_featured, created_at, updated_at, date, image, description) VALUES (24, 'Nemo mollitia totam magni sed esse.', 'nemo-mollitia-totam-magni-sed-esse', 'Consequatur dolor ex quos molestiae dolorem enim.', 1, 1, 1, 2159, 0, '2020-12-03 13:12:03', '2020-12-03 13:12:03', '2017-09-07', '', null);
+INSERT INTO blog.posts (id, title, slug, content, category_id, user_id, status, views, is_featured, created_at, updated_at, date, image, description) VALUES (24, 'Nemo mollitia totam magni sed esse.', 'nemo-mollitia-totam-magni-sed-esse', 'Consequatur dolor ex quos molestiae dolorem enim.', 1, 8, 1, 2159, 0, '2020-12-03 13:12:03', '2020-12-03 13:12:03', '2017-09-07', '', null);
+INSERT INTO blog.posts (id, title, slug, content, category_id, user_id, status, views, is_featured, created_at, updated_at, date, image, description) VALUES (25, 'Новый пост', 'novyy-post', '<p>Полный текст поста</p>', 28, 8, 0, 0, 1, '2020-12-10 13:11:40', '2020-12-10 13:11:40', '2020-12-01', null, '<p>Описание поста</p>');
 INSERT INTO blog.posts_tags (id, post_id, tag_id, created_at, updated_at) VALUES (1, 10, 1, null, null);
 INSERT INTO blog.posts_tags (id, post_id, tag_id, created_at, updated_at) VALUES (2, 10, 2, null, null);
 INSERT INTO blog.posts_tags (id, post_id, tag_id, created_at, updated_at) VALUES (3, 11, 1, null, null);
@@ -45,6 +46,10 @@ INSERT INTO blog.posts_tags (id, post_id, tag_id, created_at, updated_at) VALUES
 INSERT INTO blog.posts_tags (id, post_id, tag_id, created_at, updated_at) VALUES (10, 20, 17, null, null);
 INSERT INTO blog.posts_tags (id, post_id, tag_id, created_at, updated_at) VALUES (11, 20, 19, null, null);
 INSERT INTO blog.posts_tags (id, post_id, tag_id, created_at, updated_at) VALUES (12, 22, 19, null, null);
+INSERT INTO blog.posts_tags (id, post_id, tag_id, created_at, updated_at) VALUES (13, 25, 17, null, null);
+INSERT INTO blog.posts_tags (id, post_id, tag_id, created_at, updated_at) VALUES (14, 25, 20, null, null);
+INSERT INTO blog.subscriptions (id, email, token, created_at, updated_at) VALUES (17, 'trident998@gmail.com', null, '2020-12-10 11:36:18', '2020-12-10 11:36:42');
+INSERT INTO blog.subscriptions (id, email, token, created_at, updated_at) VALUES (20, 'test@mail.com', null, '2020-12-10 12:49:42', '2020-12-10 12:49:42');
 INSERT INTO blog.tags (id, title, slug, created_at, updated_at) VALUES (16, 'necessitatibus', 'necessitatibus', '2020-12-03 13:12:03', '2020-12-03 13:12:03');
 INSERT INTO blog.tags (id, title, slug, created_at, updated_at) VALUES (17, 'eaque', 'eaque', '2020-12-03 13:12:03', '2020-12-03 13:12:03');
 INSERT INTO blog.tags (id, title, slug, created_at, updated_at) VALUES (18, 'provident', 'provident', '2020-12-03 13:12:03', '2020-12-03 13:12:03');
