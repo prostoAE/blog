@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Admin\SubscribersController;
 use App\Http\Controllers\Admin\TagsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
 
@@ -23,10 +25,13 @@ use App\Http\Controllers\Admin\CategoriesController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
 Route::get('/post/{slug}', [HomeController::class, 'show'])->name('post.show');
 Route::get('/tag/{slug}', [HomeController::class, 'tag'])->name('tag.show');
 Route::get('/category/{slug}', [HomeController::class, 'category'])->name('category.show');
 Route::get('/author/{id}', [HomeController::class, 'author'])->name('author.show');
+Route::post('/subscribe', [SubsController::class, 'subscribe']);
+Route::get('/verify/{token}', [SubsController::class, 'verify']);
 
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/profile', [ProfileController::class, 'index']);
@@ -51,4 +56,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/comments', [\App\Http\Controllers\Admin\CommentsController::class, 'index'])->name('admin.comments');
     Route::get('/comments/toogle/{id}', [\App\Http\Controllers\Admin\CommentsController::class, 'toogle']);
     Route::delete('/comments/{id}/destroy', [\App\Http\Controllers\Admin\CommentsController::class, 'destroy'])->name('comments.destroy');
+    Route::resource('/subscribers', SubscribersController::class);
 });

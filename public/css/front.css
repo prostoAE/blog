@@ -4023,7 +4023,8 @@ about me
 subscribe newsletter
 ================*/
 
-.news-letter input[type="email"] {
+.news-letter input[type="email"],
+.news-letter input[type="text"] {
     width: 100%;
     margin-bottom: 14px;
     border: 1px solid #eeeeee;
@@ -5126,6 +5127,7 @@ img.profile-image
     margin: 0px auto 20px;
     display: block;
 }
+
 /* lg */
 @media (min-width: 1400px) {
     .show-search {

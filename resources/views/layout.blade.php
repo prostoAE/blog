@@ -73,6 +73,15 @@
   <!-- /.container-fluid -->
 </nav>
 
+@if(session('status'))
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-info">{{session('status')}}</div>
+      </div>
+    </div>
+  </div>
+@endif
 @yield('content')
 
 <!--footer start-->
